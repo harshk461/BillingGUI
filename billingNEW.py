@@ -10,7 +10,7 @@ import datetime
 
 
 get=Tk()
-get.geometry('1920x1080')
+get.geometry('1600x800')
 bg_color='#074463'
 get.config(background=bg_color)
 
@@ -18,7 +18,7 @@ uname=StringVar()
 passwd=StringVar()
 
 def login():
-    db=pymysql.connect('localhost','root','user','python')
+    db=pymysql.connect(host='localhost',user='harsh424',password='Hk@08052003',database='billing')
     con=db.cursor()
     con.execute("SELECT * FROM LOGIN")
     res=con.fetchall()
@@ -41,7 +41,7 @@ def login():
                     loan=Tk()
                     loan.geometry('850x400')
                     bg_color='#074463'
-                    db=pymysql.connect('localhost','root','user','python')
+                    db=pymysql.connect(host='localhost',user='harsh424',password='Hk@08052003',database='billing')
                     con=db.cursor()
 
                     id_no=StringVar()
@@ -154,7 +154,7 @@ def login():
                     x=random.randint(1000,9999999)
                     billno.set(str(x))
                     date =StringVar()
-                    db=pymysql.connect('localhost','root','user','python')
+                    db=pymysql.connect(host='localhost',user='harsh424',password='Hk@08052003',database='billing')
                     con=db.cursor()
                     con.execute("select Curdate()")
                     res=con.fetchall()
@@ -450,7 +450,7 @@ def login():
                             tax=(int(total_beverage_price)*0.1)+(int(total_sweet_price)*0.1)+(int(total_drink_price)*0.1)
                             total=amount+tax
                             qty=float(burger_ent.get())+float(pizza_ent.get()) +float(French_ent.get())+  float(chilli_ent.get())+     float(momo_ent.get())+      float(spring_ent.get())+       float(egg_ent.get())+       float(ice_ent.get())+        float(laddo_ent.get())+        float(donut_ent.get())+        float(brown_ent.get())+        float(kulfi_ent.get())+        float(ras_ent.get())+        float(cake_ent.get())+         float(limca_ent.get())+        float(frooti_ent.get())+        float(sprit_ent.get())+        float(coca_ent.get())+        float(pep_ent.get())+        float(wat_ent.get())+        float(app_ent.get())
-                            db=pymysql.connect('localhost','root','user','python')
+                            db=pymysql.connect(host='localhost',user='harsh424',password='Hk@08052003',database='billing')
                             con=db.cursor()
                             try:
                                 con.execute("select current_date,current_time")
@@ -741,8 +741,8 @@ def login():
 
                     prod=Button(F7,text="Pricing",font='arial 13 bold',bd=10,height=2,width=15,background="red")
                     prod.grid(row=0,column=0)
-                    def loan():
-                            import loan
+                    # def loan():
+                    #         import loan
                     khata=Button(F7,text="loan",font='arial 13 bold',bd=10,height=2,width=15,background="red",command=loan)
                     khata.grid(row=1,column=0)
 
@@ -758,12 +758,12 @@ def login():
                     M3_var=StringVar()
                     def add():
                         
-                        db=pymysql.connect('localhost','root','user','python')
+                        db=pymysql.connect(host='localhost',user='harsh424',password='Hk@08052003',database='billing')
                         con=db.cursor()
                         con.execute(f"INSERT INTO STOCK VALUES('{M1_var.get()}','{M2_var.get()}','{M3_var.get()}')")
                         db.commit()
                     def update():
-                        db=pymysql.connect('localhost','root','user','python')
+                        db=pymysql.connect(host='localhost',user='harsh424',password='Hk@08052003',database='billing')
                         con=db.cursor()
                         con.execute(f'SELECT STOCK FROM STOCK WHERE PRODUCT="{M2_var.get()}" and COMP="{M1_var.get()}"')
                         initial=con.fetchall()
@@ -774,7 +774,7 @@ def login():
 
                         
                     def fetch():
-                        db=pymysql.connect('localhost','root','user','python')
+                        db=pymysql.connect(host='localhost',user='harsh424',password='Hk@08052003',database='billing')
                         con=db.cursor()
                         con.execute("SELECT * FROM STOCK")
                         res=con.fetchall()
@@ -828,7 +828,7 @@ def login():
                             use=un.get()
                             pa=pas.get()
     
-                            db=pymysql.connect('localhost','root','user','python')
+                            db=pymysql.connect(host='localhost',user='harsh424',password='Hk@08052003',database='billing')
                             con=db.cursor()
                             if pa != paC.get():
                                 mb.showerror("Alert","Please Enter correct password in both field")
@@ -865,7 +865,7 @@ def login():
                      
                      def update():
                            try:
-                                db=pymysql.connect('localhost','root','user','python')
+                                db=pymysql.connect(host='localhost',user='harsh424',password='Hk@08052003',database='billing')
                                 con=db.cursor()
                                 I=prod_ent.get()
                                 P=price_ent.get()
@@ -877,7 +877,7 @@ def login():
                      def fetch():
                            if prod_ent.get()=="" and comp_ent.get()=="" and price_ent.get()=="":
                                  
-                                 db=pymysql.connect('localhost','root','user','python')
+                                 db=pymysql.connect(host='localhost',user='harsh424',password='Hk@08052003',database='billing')
                                  con=db.cursor()
                                  con.execute('SELECT * FROM PRICE ')
                                  res=con.fetchall()
@@ -889,7 +889,7 @@ def login():
                                  
                                       
                                  if str(comp_ent.get()).capitalize() =="Beverage" :
-                                     db=pymysql.connect('localhost','root','user','python')
+                                     db=pymysql.connect(host='localhost',user='harsh424',password='Hk@08052003',database='billing')
                                      con=db.cursor()
                                      con.execute("SELECT * FROM BEVERAGE")
                                      res=con.fetchall()
@@ -898,7 +898,7 @@ def login():
                                          txtarea.insert(END,f"\n{i[0]}\t\t\t{i[1]}")
                                      db.commit()
                                  elif str(comp_ent.get()).capitalize() =="Sweets" :
-                                     db=pymysql.connect('localhost','root','user','python')
+                                     db=pymysql.connect(host='localhost',user='harsh424',password='Hk@08052003',database='billing')
                                      con=db.cursor()
                                      con.execute("SELECT * FROM sweet")
                                      res=con.fetchall()
@@ -908,7 +908,7 @@ def login():
                                          txtarea.insert(END,f"\n{i[0]}\t\t\t{i[1]}")
                                      db.commit()
                                  elif str(comp_ent.get()).capitalize() =="Drinks" :
-                                     db=pymysql.connect('localhost','root','user','python')
+                                     db=pymysql.connect(host='localhost',user='harsh424',password='Hk@08052003',database='billing')
                                      con=db.cursor()
                                      con.execute("SELECT * FROM drink")
                                      res=con.fetchall()
@@ -918,7 +918,7 @@ def login():
                                      db.commit()
                            elif str(prod_ent.get()).capitalize() !="":
                                
-                                       db=pymysql.connect('localhost','root','user','python')
+                                       db=pymysql.connect(host='localhost',user='harsh424',password='Hk@08052003',database='billing')
                                        con=db.cursor()
                                        P=prod_ent.get()
                                        con.execute(f"SELECT * FROM PRICE WHERE product='{P}' ")
@@ -984,7 +984,7 @@ def login():
                     F1.pack(fill=BOTH,expand=1)
                     
                     def up():
-                        db=pymysql.connect('localhost','root','user','python')
+                        db=pymysql.connect(host='localhost',user='harsh424',password='Hk@08052003',database='billing')
                         try:
                             con=db.cursor()
                             P=userF.get()
@@ -1023,7 +1023,7 @@ def login():
                     FX=Frame(get,bd=2,relief=SUNKEN,bg=bg_color)
                     FX.pack(fill=BOTH,expand=1)
                     def srch():
-                          db=pymysql.connect('localhost','root','user','python')
+                          db=pymysql.connect(host='localhost',user='harsh424',password='Hk@08052003',database='billing')
                           con=db.cursor()
                           O=te_ent.get()
                           con.execute(f'SELECT * FROM EMP WHERE ID={O}')
@@ -1034,7 +1034,7 @@ def login():
                           db.commit()
                           
                     def add():
-                          db=pymysql.connect('localhost','root','user','python')
+                          db=pymysql.connect(host='localhost',user='harsh424',password='Hk@08052003',database='billing')
                           con=db.cursor()
                           con.execute(f"INSERT INTO EMP VALUES({id_var.get()},'{nam_ent.get()}',{cnc_ent.get()},'{gen.get()}',{pass_ent.get()},'{des_ent.get()}')")
                           db.commit()
@@ -1051,11 +1051,11 @@ def login():
                           proof_ent.delete(0,END)
                           
                     def update():
-                          db=pymysql.connect('localhost','root','user','python')
+                          db=pymysql.connect(host='localhost',user='harsh424',password='Hk@08052003',database='billing')
                           con=db.cursor()
                           db.commit()
                     def  fetch():
-                          db=pymysql.connect('localhost','root','user','python')
+                          db=pymysql.connect(host='localhost',user='harsh424',password='Hk@08052003',database='billing')
                           con=db.cursor()
                           con.execute("SELECT * FROM EMP")
                           res=con.fetchall()
@@ -1202,7 +1202,7 @@ def login():
                         sal=Frame(get,bd=5,relief=SUNKEN,bg='yellow')
                         sal.pack(fill=BOTH,expand=1)
                         def srch():
-                          db=pymysql.connect('localhost','root','user','python')
+                          db=pymysql.connect(host='localhost',user='harsh424',password='Hk@08052003',database='billing')
                           con=db.cursor()
                           O=te_ent.get()
                           con.execute(f'SELECT * FROM EMP WHERE ID={O}')
@@ -1212,17 +1212,17 @@ def login():
                           db.commit()
                           
                         def add():
-                              db=pymysql.connect('localhost','root','user','python')
+                              db=pymysql.connect(host='localhost',user='harsh424',password='Hk@08052003',database='billing')
                               con=db.cursor()
                               con.execute(f"INSERT INTO salary VALUES({id_var.get()},'{nam_ent.get()}','{des_ent.get()}',{sal_ent.get()},{cnc_ent.get()})")
                               db.commit()
                               mb.showinfo("Sucessful","Data Inserted")
                         def update():
-                              db=pymysql.connect('localhost','root','user','python')
+                              db=pymysql.connect(host='localhost',user='harsh424',password='Hk@08052003',database='billing')
                               con=db.cursor()
                               db.commit()
                         def  fetch():
-                              db=pymysql.connect('localhost','root','user','python')
+                              db=pymysql.connect(host='localhost',user='harsh424',password='Hk@08052003',database='billing')
                               con=db.cursor()
                               con.execute("SELECT * FROM salary")
                               res=con.fetchall()
@@ -1316,11 +1316,11 @@ def login():
                         F12=Frame(get,bd=5,relief=SUNKEN,bg='red')
                         F12.pack(fill=BOTH,expand=1)
                         def update():
-                              db=pymysql.connect('localhost','root','user','python')
+                              db=pymysql.connect(host='localhost',user='harsh424',password='Hk@08052003',database='billing')
                               con=db.cursor()
                               db.commit()
                         def  fetch():
-                              db=pymysql.connect('localhost','root','user','python')
+                              db=pymysql.connect(host='localhost',user='harsh424',password='Hk@08052003',database='billing')
                               con=db.cursor()
                               con.execute(f"SELECT * FROM bill_new where bill_date between '{st_ent.get()}' and '{ed_ent.get()} '")
                               res=con.fetchall()
@@ -1342,7 +1342,7 @@ def login():
                            
                         
                         def MONTH():
-                            db=pymysql.connect('localhost','root','user','python')
+                            db=pymysql.connect(host='localhost',user='harsh424',password='Hk@08052003',database='billing')
                             con=db.cursor()
                             yr=year_ent.get()
                             if month_ent.get() == 'January':
@@ -1544,7 +1544,7 @@ def login():
     
         #===============variables===========================================
 F121=Frame(get,bg='white',bd=3,relief=GROOVE,)
-F121.place(x=0,y=0,height=800,width=1527)
+F121.place(x=0,y=0,width=1600,height=800)
 
 title_image=ImageTk.PhotoImage(file="billing/login.jpg")
 title_lbl=Label(F121,image=title_image).pack(fill=BOTH)
